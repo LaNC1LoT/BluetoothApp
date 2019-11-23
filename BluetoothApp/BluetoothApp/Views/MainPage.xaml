@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BluetoothApp"
+             x:Class="BluetoothApp.Views.MainPage" mc:Ignorable="d"
+             xmlns:vm="clr-namespace:BluetoothApp.ViewModels" Title="Main">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Для работы с прил. вкл. Bluetooth!" LineBreakMode="WordWrap" TextColor="Red" FontSize="16" />
+            <Button Grid.Row="1" Grid.Column="0" Text="{Binding BtnScanText}" Command="{Binding ScanCommand}" IsEnabled="{Binding IsEnabledScan}" />
+            <Button Grid.Row="1" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}" IsEnabled="{Binding IsEnabledStop}" />
+            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ItemsListView" ItemsSource="{Binding Device}" VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Label Text="{Binding .}" LineBreakMode="NoWrap"  Style="{DynamicResource ListItemTextStyle}"  FontSize="16" />
+                                <!--<Label Text="{Binding Name}"  LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />-->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
